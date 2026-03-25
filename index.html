@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beter Begrepen</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#" class="brand-container">
+            <img src="images/logo.png" alt="BeterBegrepen Icoon" class="logo-icon">
+            <span class="brand-name">
+                <span class="text-yellow">Beter</span><span class="text-black">Begrepen</span>
+            </span>
+        </a>
+
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#features">Features</a></li>
+        </ul>
+    </nav>
+
+    <header id="hero" class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h1>Ontdek onze applicatie <span class="text-yellow">Beter</span>Begrepen.</h1>
+                <p>Medische informatie in een begrijpelijke taal. Wij helpen patiënten om hun zorgtraject beter te overzien en te begrijpen.</p>
+                <a href="https://www.figma.com/proto/..." target="_blank" class="btn">Bekijk Demo</a>
+            </div>
+            <div class="hero-image">
+                <img src="images/HomePagina.PNG" alt="Hoofdscherm Applicatie">
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">Onze <span class="text-yellow">Features</span></h2>
+
+            <div class="showcase-item">
+                <div class="showcase-text">
+                    <h3>Zorgtraject</h3>
+                    <p>Volg je medische stappen op de voet met een helder en visueel overzicht van je volledige traject.</p>
+                </div>
+                <div class="showcase-image">
+                    <div class="slider-wrapper">
+                        <button class="slider-btn prev">❮</button>
+                        
+                        <div class="image-slider" id="zorg-slider">
+                            <img src="images/ZorgtrajectMaandag.png" alt="Maandag">
+                            <img src="images/ZorgtrajectDinsdag.png" alt="Dinsdag">
+                            <img src="images/ZorgtrajectWoensdag.png" alt="Woensdag">
+                            <img src="images/ZorgtrajectDonderdag.png" alt="Donderdag">
+                            <img src="images/ZorgtrajectVrijdag.png" alt="Vrijdag">
+                            <img src="images/ZorgtrajectZaterdag.png" alt="Zaterdag">
+                            <img src="images/ZorgtrajectZondag.png" alt="Zondag">
+                        </div>
+                        
+                        <button class="slider-btn next">❯</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="showcase-item reverse">
+                <div class="showcase-text">
+                    <h3>Profiel</h3>
+                    <p>Al je persoonlijke medische gegevens veilig op één plek, altijd binnen handbereik wanneer je ze nodig hebt.</p>
+                </div>
+                <div class="showcase-image">
+                    <img src="images/Profiel.png" alt="Profiel">
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <div class="showcase-text">
+                    <h3>Vertaling</h3>
+                    <p>Geen moeilijke vaktermen meer. Wij vertalen complexe medische info naar klare taal die iedereen begrijpt.</p>
+                </div>
+<div class="showcase-image">
+    <div class="slider-wrapper">
+        <button class="slider-btn prev">❮</button>
+        
+        <div class="image-slider" id="vertaling-slider">
+            <img src="images/PreVertaling.PNG" alt="Originele Diagnose">
+            <img src="images/PostVertaling.PNG" alt="Vertaalde Diagnose">
+        </div>
+        
+        <button class="slider-btn next">❯</button>
+    </div>
+</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-logo">
+                <p>&copy; 2026 - <span class="text-yellow">Beter</span><span class="text-black">Begrepen</span></p>
+            </div>
+            
+            <div class="team-grid">
+                <span>Dré Machtelinckx</span>
+                <span>Kamiel De Meyer</span>
+                <span>Luka Samyn</span>
+                <span>Kai Deneubourg</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.documentElement.classList.add('js-enabled');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const elementsToReveal = document.querySelectorAll('.hero-text, .hero-image, .section-title, .showcase-item, footer');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            elementsToReveal.forEach(el => observer.observe(el));
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            // Reveal animatie (Intersection Observer)
+            const elementsToReveal = document.querySelectorAll('.hero-text, .hero-image, .section-title, .showcase-item, footer');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            elementsToReveal.forEach(el => observer.observe(el));
+
+            // --- GENERIEKE SLIDER LOGICA (Werkt voor Zorgtraject EN Vertaling) ---
+            const wrappers = document.querySelectorAll('.slider-wrapper');
+
+            wrappers.forEach(wrapper => {
+                const slider = wrapper.querySelector('.image-slider');
+                const prevBtn = wrapper.querySelector('.slider-btn.prev');
+                const nextBtn = wrapper.querySelector('.slider-btn.next');
+
+                if (slider && prevBtn && nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        slider.scrollBy({ left: 320, behavior: 'smooth' });
+                    });
+
+                    prevBtn.addEventListener('click', () => {
+                        slider.scrollBy({ left: -320, behavior: 'smooth' });
+                    });
+                }
+            });
+        });
+    </script> 
+</body>
+</html>
