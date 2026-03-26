@@ -30,6 +30,28 @@ body {
     will-change: transform, opacity;
 }
 
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: #FCB514;
+    color: #000;
+    padding: 10px 20px;
+    z-index: 10000;
+    text-decoration: none;
+    font-weight: bold;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+:focus-visible {
+    outline: 3px solid #FCB514;
+    outline-offset: 2px; 
+}
+
 
 .hero-text.active, .hero-image.active, .section-title.active, .showcase-item.active, footer.active {
     opacity: 1;
@@ -43,7 +65,7 @@ body {
     width: 100%;
 }
 
-.text-yellow { color: #FCB514; }
+.text-yellow { color: #ffb300; }
 .text-black { color: #000000; }
 
 
@@ -280,6 +302,8 @@ section {
     border-radius: 25px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
+
+
 
 .image-slider::-webkit-scrollbar {
     display: none;
